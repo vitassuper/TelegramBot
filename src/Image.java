@@ -7,15 +7,16 @@ import org.telegram.telegrambots.meta.api.objects.File;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import TelegramBot.Exaptions.UnknownCommand;
 import TelegramBot.ImageType.TypesList;
 
 public class Image {
 	
-	public static void isSupportedType(String type){
+	public static void isSupportedType(String type) throws UnknownCommand{
 		for (String iter : TypesList.getTypesList().keySet()) {
 			if (type.equals(iter)) return;
 		}
-		throw new RuntimeException("Неподдерживаемый тип");
+		throw new UnknownCommand("Неподдерживаемый тип");
 	}
 	
 	public static void SendImage(Update update, java.io.File file, Bot bot) {
